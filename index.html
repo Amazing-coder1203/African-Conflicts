@@ -3,29 +3,26 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>African Migration & Refugee Movement Analysis | Data Analytics Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         * {
             margin: 0;
-            
             padding: 0;
             box-sizing: border-box;
         }
 
         body {
-            
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #0c0c0c 100%);
-            background-attachment: fixed;
-            color: #ffffff;
+            background: #ffffff;
+            color: #000000;
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* Animated background particles */
+        /* Clean minimal particles */
         .particles {
             position: fixed;
             top: 0;
@@ -33,26 +30,19 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            opacity: 0.1;
+            opacity: 0.03;
         }
 
         .particle {
             position: absolute;
-            background: #daff54;
+            background: #000000;
             border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
+            animation: float 8s ease-in-out infinite;
         }
 
         @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(0px) rotate(0deg);
-            }
-
-            50% {
-                transform: translateY(-20px) rotate(180deg);
-            }
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(180deg); }
         }
 
         /* Navigation */
@@ -60,11 +50,12 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(12, 12, 12, 0.95);
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
             z-index: 1000;
             padding: 1rem 0;
-            border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+            border-bottom: 1px solid #e0e0e0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
 
         .nav-container {
@@ -73,94 +64,144 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 2rem;
+            padding: 0 1rem;
         }
 
         .nav-brand {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: 700;
-            color: #daff54;
+            color: #000000;
             text-decoration: none;
+            letter-spacing: -0.5px;
         }
 
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 1.5rem;
         }
 
         .nav-links a {
-            color: #ffffff;
+            color: #333333;
             text-decoration: none;
+            font-weight: 500;
             transition: color 0.3s ease;
+            position: relative;
+            font-size: 0.9rem;
         }
 
         .nav-links a:hover {
-            color: #daff54;
+            color: #000000;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #000000;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #000000;
+            cursor: pointer;
+        }
+
+        .nav-links.mobile-active {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid #e0e0e0;
+            padding: 1rem;
+            gap: 1rem;
         }
 
         /* Hero Section */
         .hero {
-            margin-top:10%;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 0 2rem;
+            padding: 0 1rem;
             position: relative;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
         }
 
         .hero-content {
-            max-width: 800px;
+            max-width: 900px;
             z-index: 10;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #daff54, #ffffff, #ff6b6b);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-size: clamp(2rem, 8vw, 4rem);
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            color: #000000;
+            letter-spacing: -1px;
             animation: slideInUp 1s ease-out;
         }
 
         .hero h2 {
-            font-size: 1.5rem;
+            font-size: clamp(1rem, 4vw, 1.5rem);
             font-weight: 400;
-            color: #b0b0b0;
-            margin-bottom: 2rem;
+            color: #666666;
+            margin-bottom: 3rem;
             animation: slideInUp 1s ease-out 0.2s both;
         }
 
         .hero-stats {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 4rem;
             animation: slideInUp 1s ease-out 0.4s both;
         }
 
         .stat-item {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            padding: 1.5rem;
-            border: 1px solid rgba(100, 255, 218, 0.2);
-            backdrop-filter: blur(10px);
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 1.5rem 1rem;
+            border: 1px solid #e0e0e0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
         }
 
         .stat-number {
-            font-size: 2rem;
+            font-size: clamp(1.5rem, 6vw, 2.5rem);
             font-weight: 700;
-            color: #daff54;
+            color: #000000;
+            margin-bottom: 0.5rem;
         }
 
         .stat-label {
-            font-size: 0.9rem;
-            color: #b0b0b0;
-            margin-top: 0.5rem;
+            font-size: clamp(0.7rem, 3vw, 0.9rem);
+            color: #666666;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         @keyframes slideInUp {
@@ -168,7 +209,6 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -179,123 +219,196 @@
         .container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 1rem;
         }
 
         .section {
-            padding: 5rem 0;
+            padding: 4rem 0;
         }
 
         .section-title {
-            font-size: 2.5rem;
-            font-weight: 600;
+            font-size: clamp(2rem, 6vw, 3rem);
+            font-weight: 300;
             text-align: center;
             margin-bottom: 3rem;
-            color: #daff54;
+            color: #000000;
+            letter-spacing: -1px;
         }
 
-        /* About Analysis Section */
-        .about-analysis {
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 20px;
-            padding: 3rem;
-            margin-bottom: 5rem;
-            border: 1px solid rgba(100, 255, 218, 0.1);
+        /* Analysis Results Section */
+        .analysis-results {
+            background: #f8f9fa;
+            padding: 3rem 1rem;
+            margin: 3rem 0;
         }
 
-        .analysis-grid {
+        .results-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
         }
 
-        .analysis-item {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
+        .result-card {
+            background: #ffffff;
+            border-radius: 8px;
             padding: 2rem;
-            border-left: 4px solid #daff54;
+            border: 1px solid #e0e0e0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
         }
 
-        .analysis-item h3 {
-            color: #daff54;
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
+        .result-card h3 {
+            color: #000000;
+            margin-bottom: 1.5rem;
+            font-size: clamp(1.1rem, 4vw, 1.5rem);
+            font-weight: 600;
+            border-bottom: 2px solid #000000;
+            padding-bottom: 0.5rem;
         }
 
-        .analysis-item p {
-            color: #b0b0b0;
-            line-height: 1.8;
+        .result-list {
+            list-style: none;
+            padding: 0;
         }
 
-        /* Data Sources */
-        .data-sources {
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 20px;
-            padding: 3rem;
-            margin-bottom: 5rem;
-            border: 1px solid rgba(100, 255, 218, 0.1);
+        .result-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
         }
 
-        .sources-grid {
+        .result-list li:last-child {
+            border-bottom: none;
+        }
+
+        .country-name {
+            font-weight: 600;
+            color: #000000;
+            font-size: clamp(0.8rem, 3vw, 1rem);
+        }
+
+        .impact-number {
+            font-weight: 700;
+            color: #666666;
+            font-size: clamp(0.7rem, 3vw, 0.9rem);
+        }
+
+        /* Key Insights Section */
+        .key-insights {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 4rem 0;
+            border: 1px solid #e0e0e0;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .insights-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
             margin-top: 2rem;
         }
 
+        .insight-item {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1.5rem;
+            border-left: 4px solid #000000;
+        }
+
+        .insight-item h3 {
+            color: #000000;
+            margin-bottom: 1rem;
+            font-size: clamp(1rem, 4vw, 1.3rem);
+            font-weight: 600;
+        }
+
+        .insight-item p {
+            color: #666666;
+            line-height: 1.8;
+            font-size: clamp(0.8rem, 3vw, 1rem);
+        }
+
+        /* Data Sources */
+        .data-sources {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 4rem;
+            border: 1px solid #e0e0e0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .sources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
         .source-item {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
             padding: 1.5rem;
             text-align: center;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #e0e0e0;
         }
 
         .source-item:hover {
             transform: translateY(-5px);
-            background: rgba(100, 255, 218, 0.1);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
         }
 
         .source-icon {
-            font-size: 2rem;
-            color: #daff54;
+            font-size: clamp(1.5rem, 6vw, 2rem);
+            color: #000000;
             margin-bottom: 1rem;
         }
 
         .source-name {
             font-weight: 600;
             margin-bottom: 0.5rem;
+            color: #000000;
+            font-size: clamp(0.9rem, 4vw, 1rem);
         }
 
         .source-desc {
-            font-size: 0.9rem;
-            color: #b0b0b0;
+            font-size: clamp(0.7rem, 3vw, 0.9rem);
+            color: #666666;
+            line-height: 1.6;
         }
 
         /* Dashboard Section */
         .dashboard-section {
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: 25px;
-            padding: 3rem;
-            border: 1px solid rgba(100, 255, 218, 0.15);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid #e0e0e0;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
         }
 
         .dashboard-header {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
         }
 
         .dashboard-header h2 {
-            font-size: 2.2rem;
-            color: #daff54;
+            font-size: clamp(1.8rem, 6vw, 2.5rem);
+            color: #000000;
             margin-bottom: 1rem;
+            font-weight: 300;
+            letter-spacing: -0.5px;
         }
 
         .dashboard-header p {
-            color: #b0b0b0;
-            font-size: 1.1rem;
+            color: #666666;
+            font-size: clamp(0.9rem, 4vw, 1.1rem);
             max-width: 600px;
             margin: 0 auto;
         }
@@ -303,20 +416,20 @@
         .dashboard-container {
             position: relative;
             width: 100%;
-            height: 80vh;
-            min-height: 600px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
+            height: 70vh;
+            min-height: 400px;
+            background: #f8f9fa;
+            border-radius: 8px;
             overflow: hidden;
-            border: 2px solid rgba(100, 255, 218, 0.2);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            border: 1px solid #e0e0e0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
         }
 
         .dashboard-container iframe {
             width: 100%;
             height: 100%;
             border: none;
-            border-radius: 13px;
+            border-radius: 8px;
         }
 
         .dashboard-placeholder {
@@ -325,138 +438,191 @@
             left: 50%;
             transform: translate(-50%, -50%);
             text-align: center;
-            color: #daff54;
+            color: #666666;
         }
 
         .dashboard-placeholder i {
-            font-size: 4rem;
+            font-size: 3rem;
             margin-bottom: 1rem;
             opacity: 0.7;
         }
 
         /* PDF Fallback Section */
         .pdf-fallback-section {
-            margin-top: 3rem;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 15px;
-            padding: 2rem;
-            border: 1px solid rgba(218, 255, 84, 0.2);
+            margin-top: 2rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid #e0e0e0;
         }
 
         .pdf-header {
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
 
         .pdf-header h3 {
-            color: #daff54;
-            font-size: 1.5rem;
+            color: #000000;
+            font-size: clamp(1.2rem, 5vw, 1.5rem);
             margin-bottom: 0.5rem;
+            font-weight: 600;
         }
 
         .pdf-header p {
-            color: #b0b0b0;
-            font-size: 1rem;
+            color: #666666;
+            font-size: clamp(0.8rem, 4vw, 1rem);
         }
 
         .pdf-container {
             position: relative;
             width: 100%;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
+            background: #ffffff;
+            border-radius: 8px;
             overflow: hidden;
-            border: 1px solid rgba(218, 255, 84, 0.1);
+            border: 1px solid #e0e0e0;
+        }
+
+        .pdf-container iframe {
+            width: 100%;
+            height: 400px;
+            border: none;
+            border-radius: 8px;
         }
 
         .pdf-note {
             text-align: center;
-            margin-top: 1.5rem;
+            margin-top: 1rem;
             padding: 1rem;
-            background: rgba(218, 255, 84, 0.1);
-            border-radius: 10px;
-            border-left: 4px solid #daff54;
+            background: #ffffff;
+            border-radius: 8px;
+            border-left: 4px solid #000000;
+            border: 1px solid #e0e0e0;
         }
 
         .pdf-note p {
-            color: #b0b0b0;
-            font-size: 0.9rem;
+            color: #666666;
+            font-size: clamp(0.7rem, 3vw, 0.9rem);
             margin: 0;
         }
 
         .pdf-note i {
-            color: #daff54;
+            color: #000000;
             margin-right: 0.5rem;
-        }
-
-        /* Responsive PDF */
-        @media (max-width: 768px) {
-            .pdf-container iframe {
-                height: 400px;
-            }
-            
-            .pdf-fallback-section {
-                padding: 1.5rem;
-                margin-top: 2rem;
-            }
         }
 
         /* Features Section */
         .features {
-            margin-top: 5rem;
+            margin-top: 4rem;
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
         }
 
         .feature-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
+            background: #ffffff;
+            border-radius: 8px;
             padding: 2rem;
             text-align: center;
-            border: 1px solid rgba(100, 255, 218, 0.1);
+            border: 1px solid #e0e0e0;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
         }
 
         .feature-card:hover {
             transform: translateY(-10px);
-            border-color: rgba(100, 255, 218, 0.3);
-            box-shadow: 0 20px 40px rgba(100, 255, 218, 0.1);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
         }
 
         .feature-icon {
-            font-size: 3rem;
-            color: #daff54;
+            font-size: clamp(2rem, 8vw, 3rem);
+            color: #000000;
             margin-bottom: 1rem;
         }
 
         .feature-title {
-            font-size: 1.3rem;
+            font-size: clamp(1rem, 4vw, 1.3rem);
             font-weight: 600;
             margin-bottom: 1rem;
-            color: #ffffff;
+            color: #000000;
         }
 
         .feature-desc {
-            color: #b0b0b0;
+            color: #666666;
             line-height: 1.6;
+            font-size: clamp(0.8rem, 3vw, 1rem);
+        }
+
+        /* Timeline Section */
+        .timeline-section {
+            background: #f8f9fa;
+            padding: 3rem 1rem;
+            margin: 3rem 0;
+        }
+
+        .timeline {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #000000;
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: flex-start;
+            padding-left: 50px;
+            position: relative;
+            margin: 30px 0;
+            width: 100%;
+        }
+
+        .timeline-content {
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid #e0e0e0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            position: relative;
+            width: 100%;
+        }
+
+        .timeline-year {
+            font-size: clamp(1rem, 4vw, 1.2rem);
+            font-weight: 700;
+            color: #000000;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-desc {
+            color: #666666;
+            font-size: clamp(0.8rem, 3vw, 0.9rem);
         }
 
         /* Footer */
         .footer {
-            background: rgba(12, 12, 12, 0.8);
-            padding: 3rem 0;
+            background: #000000;
+            color: #ffffff;
+            padding: 3rem 1rem;
             text-align: center;
-            border-top: 1px solid rgba(100, 255, 218, 0.1);
-            margin-top: 5rem;
+            margin-top: 4rem;
         }
 
         .footer p {
-            color: #b0b0b0;
+            color: #cccccc;
             margin-bottom: 1rem;
+            font-size: clamp(0.8rem, 3vw, 1rem);
         }
 
         .social-links {
@@ -464,45 +630,137 @@
             justify-content: center;
             gap: 1rem;
             margin-top: 2rem;
+            flex-wrap: wrap;
         }
 
         .social-links a {
-            color: #64ffda;
-            font-size: 1.5rem;
-            transition: transform 0.3s ease;
+            color: #ffffff;
+            font-size: clamp(1.2rem, 5vw, 1.5rem);
+            transition: transform 0.3s ease, color 0.3s ease;
+            padding: 0.5rem;
         }
 
         .social-links a:hover {
             transform: scale(1.2);
+            color: #cccccc;
         }
 
-        /* Responsive Design */
+        /* CTA Button */
+        .cta-button {
+            display: inline-block;
+            background: #000000;
+            color: #ffffff;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 2rem;
+            font-size: clamp(0.8rem, 4vw, 1rem);
+        }
+
+        .cta-button:hover {
+            background: #333333;
+            transform: translateY(-2px);
+        }
+
+        /* Mobile-Specific Optimizations */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero h2 {
-                font-size: 1.2rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
             .nav-links {
                 display: none;
             }
 
-            .dashboard-container {
-                height: 60vh;
-                min-height: 400px;
+            .mobile-menu-toggle {
+                display: block;
             }
 
-            .about-analysis,
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            .nav-brand {
+                font-size: 1rem;
+            }
+
+            .section {
+                padding: 3rem 0;
+            }
+
+            .dashboard-container {
+                height: 50vh;
+                min-height: 300px;
+            }
+
+            .pdf-container iframe {
+                height: 300px;
+            }
+
+            .hero-stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .stat-item {
+                padding: 1rem 0.5rem;
+            }
+
+            .results-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .insights-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .sources-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .timeline-item {
+                padding-left: 40px;
+            }
+
+            .timeline-content {
+                padding: 1rem;
+            }
+
+            .analysis-results,
             .data-sources,
-            .dashboard-section {
-                padding: 2rem;
+            .dashboard-section,
+            .key-insights {
+                padding: 1.5rem;
+                margin: 2rem 0;
+            }
+
+            .pdf-fallback-section {
+                padding: 1rem;
+                margin-top: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .sources-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline::before {
+                left: 15px;
+            }
+
+            .timeline-item {
+                padding-left: 35px;
             }
         }
 
@@ -517,21 +775,40 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* Touch-friendly interactions */
+        @media (hover: none) {
+            .feature-card:hover,
+            .source-item:hover,
+            .stat-item:hover {
+                transform: none;
+            }
+
+            .feature-card:active,
+            .source-item:active,
+            .stat-item:active {
+                transform: scale(0.98);
+            }
+        }
     </style>
 </head>
 
 <body>
-    <!-- Animated particles background -->
+    <!-- Clean minimal particles background -->
     <div class="particles" id="particles"></div>
 
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="#" class="nav-brand"><!--connect to main portfolio website later-->
-                <i class="fas fa-chart-line"></i> SK Devane's Portfolio
+            <a href="#" class="nav-brand">
+                <i class="fas fa-chart-line"></i> SK Devane Portfolio
             </a>
-            <ul class="nav-links">
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="navLinks">
                 <li><a href="#about">About</a></li>
+                <li><a href="#analysis">Analysis</a></li>
                 <li><a href="#dashboard">Dashboard</a></li>
                 <li><a href="#features">Features</a></li>
                 <li><a href="#contact">Contact</a></li>
@@ -547,20 +824,20 @@
 
             <div class="hero-stats">
                 <div class="stat-item">
-                    <div class="stat-number">76</div>
-                    <div class="stat-label">Years Analyzed</div>
+                    <div class="stat-number">85</div>
+                    <div class="stat-label">Conflicts Analyzed</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">150+</div>
-                    <div class="stat-label">Conflicts Studied</div>
+                    <div class="stat-number">105M</div>
+                    <div class="stat-label">People Affected</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">54</div>
-                    <div class="stat-label">African Countries</div>
+                    <div class="stat-number">42</div>
+                    <div class="stat-label">Countries Studied</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">50M+</div>
-                    <div class="stat-label">People Displaced</div>
+                    <div class="stat-number">73</div>
+                    <div class="stat-label">Years Covered</div>
                 </div>
             </div>
         </div>
@@ -568,42 +845,185 @@
 
     <!-- Main Content -->
     <div class="container">
-        <!-- About Analysis Section -->
-        <section id="about" class="section fade-in">
-            <div class="about-analysis">
-                <h2 class="section-title">Why This Analysis Matters</h2>
-                <p style="text-align: center; color: #b0b0b0; font-size: 1.1rem; margin-bottom: 3rem;">
-                    Understanding migration patterns is crucial for humanitarian planning, policy development, and
-                    addressing root causes of displacement across Africa.
+        <!-- Analysis Results Section -->
+        <section id="analysis" class="section fade-in">
+            <div class="analysis-results">
+                <h2 class="section-title">Key Analysis Results</h2>
+                <p style="text-align: center; color: #666666; font-size: clamp(0.9rem, 4vw, 1.1rem); margin-bottom: 3rem;">
+                    Our comprehensive analysis reveals critical patterns in African migration and displacement over seven decades
                 </p>
 
-                <div class="analysis-grid">
-                    <div class="analysis-item">
+                <div class="results-grid">
+                    <div class="result-card">
+                        <h3><i class="fas fa-crown"></i> Most Affected Countries</h3>
+                        <ul class="result-list">
+                            <li>
+                                <span class="country-name">Sudan</span>
+                                <span class="impact-number">22.6M people</span>
+                            </li>
+                            <li>
+                                <span class="country-name">Mozambique</span>
+                                <span class="impact-number">15.9M people</span>
+                            </li>
+                            <li>
+                                <span class="country-name">Angola</span>
+                                <span class="impact-number">9.5M people</span>
+                            </li>
+                            <li>
+                                <span class="country-name">Nigeria</span>
+                                <span class="impact-number">7.9M people</span>
+                            </li>
+                            <li>
+                                <span class="country-name">Ethiopia</span>
+                                <span class="impact-number">6.4M people</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="result-card">
+                        <h3><i class="fas fa-fire"></i> Most Conflicted Regions</h3>
+                        <ul class="result-list">
+                            <li>
+                                <span class="country-name">West Africa</span>
+                                <span class="impact-number">25 conflicts</span>
+                            </li>
+                            <li>
+                                <span class="country-name">East Africa</span>
+                                <span class="impact-number">22 conflicts</span>
+                            </li>
+                            <li>
+                                <span class="country-name">Central Africa</span>
+                                <span class="impact-number">16 conflicts</span>
+                            </li>
+                            <li>
+                                <span class="country-name">North Africa</span>
+                                <span class="impact-number">13 conflicts</span>
+                            </li>
+                            <li>
+                                <span class="country-name">South Africa</span>
+                                <span class="impact-number">9 conflicts</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="result-card">
+                        <h3><i class="fas fa-calendar-alt"></i> Peak Conflict Decades</h3>
+                        <ul class="result-list">
+                            <li>
+                                <span class="country-name">1960s (Decolonization)</span>
+                                <span class="impact-number">19 conflicts</span>
+                            </li>
+                            <li>
+                                <span class="country-name">1970s (Civil Wars)</span>
+                                <span class="impact-number">11 conflicts</span>
+                            </li>
+                            <li>
+                                <span class="country-name">1990s (Post-Cold War)</span>
+                                <span class="impact-number">12 conflicts</span>
+                            </li>
+                            <li>
+                                <span class="country-name">2020s (Current Crises)</span>
+                                <span class="impact-number">10 conflicts</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="result-card">
+                        <h3><i class="fas fa-exclamation-triangle"></i> Current Major Crises</h3>
+                        <ul class="result-list">
+                            <li>
+                                <span class="country-name">Sudan Armed Conflict</span>
+                                <span class="impact-number">11M affected</span>
+                            </li>
+                            <li>
+                                <span class="country-name">Lake Chad Basin</span>
+                                <span class="impact-number">6M affected</span>
+                            </li>
+                            <li>
+                                <span class="country-name">Central Sahel Crisis</span>
+                                <span class="impact-number">3.3M affected</span>
+                            </li>
+                            <li>
+                                <span class="country-name">Cabo Delgado Insurgency</span>
+                                <span class="impact-number">1.3M affected</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Insights Section -->
+        <section id="about" class="section fade-in">
+            <div class="key-insights">
+                <h2 class="section-title">Critical Insights & Patterns</h2>
+                
+                <div class="insights-grid">
+                    <div class="insight-item">
                         <h3><i class="fas fa-bullseye"></i> Research Objective</h3>
-                        <p>To analyze 76 years of African migration and refugee movements, identifying patterns,
-                            drivers, and humanitarian hotspots to inform evidence-based decision making for aid
-                            organizations, policymakers, and researchers.</p>
+                        <p>To analyze 76 years of African migration and refugee movements, identifying patterns, drivers, and humanitarian hotspots to inform evidence-based decision making for aid organizations, policymakers, and researchers.</p>
                     </div>
 
-                    <div class="analysis-item">
-                        <h3><i class="fas fa-chart-area"></i> Scope & Impact</h3>
-                        <p>Comprehensive analysis covering all 54 African countries, tracking over 150 major conflicts
-                            and displacement events that affected millions of people across different time periods and
-                            regions.</p>
+                    <div class="insight-item">
+                        <h3><i class="fas fa-chart-area"></i> Scale & Impact</h3>
+                        <p>Our analysis covers 85 major conflicts across 42 African countries, affecting over 105 million people. Sudan emerges as the most impacted nation with 22.6 million people affected across multiple conflicts spanning decades.</p>
                     </div>
 
-                    <div class="analysis-item">
-                        <h3><i class="fas fa-brain"></i> Key Insights</h3>
-                        <p>Identified geographic hotspots, temporal peaks during decolonization and post-Cold War
-                            periods, demographic impacts on vulnerable populations, and evolving drivers from political
-                            to climate-related displacement.</p>
+                    <div class="insight-item">
+                        <h3><i class="fas fa-brain"></i> Regional Patterns</h3>
+                        <p>West Africa leads with 25 conflicts, followed by East Africa (22) and Central Africa (16). These regions show distinct patterns: West Africa dominated by post-independence conflicts, East Africa by ethnic tensions and climate issues.</p>
                     </div>
 
-                    <div class="analysis-item">
-                        <h3><i class="fas fa-hands-helping"></i> Humanitarian Value</h3>
-                        <p>Provides actionable insights for humanitarian organizations to anticipate needs, allocate
-                            resources effectively, and develop targeted interventions for displaced populations across
-                            Africa.</p>
+                    <div class="insight-item">
+                        <h3><i class="fas fa-clock"></i> Temporal Evolution</h3>
+                        <p>The 1960s "Year of Africa" saw peak decolonization conflicts (19), while recent decades show emerging climate-driven displacement and terrorism-related crises, particularly in the Sahel region.</p>
+                    </div>
+
+                    <div class="insight-item">
+                        <h3><i class="fas fa-users"></i> Demographic Impact</h3>
+                        <p>Analysis reveals that 75% of displaced populations consist of women, children, and elderly - highlighting the vulnerability of non-combatant populations in African conflicts and the need for targeted humanitarian response.</p>
+                    </div>
+
+                    <div class="insight-item">
+                        <h3><i class="fas fa-hands-helping"></i> Modern Challenges</h3>
+                        <p>Current crises like Sudan's 2023 conflict (11M affected) and the Lake Chad Basin insurgency (6M affected) demonstrate evolving threats including climate change, terrorism, and state fragility requiring new response strategies.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline Section -->
+        <section class="timeline-section fade-in">
+            <h2 class="section-title">Historical Timeline of Major Displacement Events</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">1960s</div>
+                        <div class="timeline-desc">Peak decolonization period with 19 conflicts including Algerian War of Independence and Nigerian Civil War</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">1970s</div>
+                        <div class="timeline-desc">Cold War proxy conflicts emerge across Angola, Mozambique, and Ethiopia affecting millions</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">1990s</div>
+                        <div class="timeline-desc">Rwandan Genocide and Great Lakes region conflicts create massive refugee flows across Central/East Africa</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2000s</div>
+                        <div class="timeline-desc">Darfur crisis emerges alongside continued instability in Somalia and Democratic Republic of Congo</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2020s</div>
+                        <div class="timeline-desc">Sudan conflict and Sahel crises highlight new patterns of climate-driven and terrorism-related displacement</div>
                     </div>
                 </div>
             </div>
@@ -613,7 +1033,7 @@
         <section class="section fade-in">
             <div class="data-sources">
                 <h2 class="section-title">Authoritative Data Sources</h2>
-                <p style="text-align: center; color: #b0b0b0; margin-bottom: 3rem;">
+                <p style="text-align: center; color: #666666; margin-bottom: 3rem; font-size: clamp(0.9rem, 4vw, 1rem);">
                     Our analysis is built on data from leading humanitarian organizations and research institutions
                 </p>
 
@@ -621,15 +1041,13 @@
                     <div class="source-item">
                         <div class="source-icon"><i class="fas fa-globe"></i></div>
                         <div class="source-name">UNHCR</div>
-                        <div class="source-desc">UN Refugee Agency - Global displacement statistics and refugee data
-                        </div>
+                        <div class="source-desc">UN Refugee Agency - Global displacement statistics and refugee data</div>
                     </div>
 
                     <div class="source-item">
                         <div class="source-icon"><i class="fas fa-users"></i></div>
                         <div class="source-name">IOM</div>
-                        <div class="source-desc">International Organization for Migration - Migration flows and
-                            displacement tracking</div>
+                        <div class="source-desc">International Organization for Migration - Migration flows and displacement tracking</div>
                     </div>
 
                     <div class="source-item">
@@ -664,31 +1082,22 @@
             <div class="dashboard-section">
                 <div class="dashboard-header">
                     <h2>Interactive Data Dashboard</h2>
-                    <p>Explore 76 years of African migration data through interactive visualizations, geographic
-                        mapping, and demographic analysis</p>
+                    <p>Explore 73 years of African migration data through interactive visualizations, geographic mapping, and demographic analysis</p>
                 </div>
 
                 <div class="dashboard-container">
-                    <!-- Replace YOUR-POWER-BI-EMBED-URL with your actual Power BI embed URL -->
                     <iframe title="Dashboard" width="1140" height="541.25"
                         src="https://app.powerbi.com/reportEmbed?reportId=28002cf7-d4e2-4767-9876-0461beec0ebc&autoAuth=true&ctid=edc5c3bf-4ab5-4697-84fa-41b44eb08b5e"
                         style="
-        clip-path: rect(0px 80.5% 84.6% 0%);
-        border: none; 
-        margin:10%;
-        margin-top: 30px;
-        /* margin-left: 10px;  */
-        padding: 0;
-        width: 100%;
-        height: 100%;
-        display: block;" allowfullscreen></iframe>
-
-                    <!-- Placeholder content (remove when you add actual Power BI URL) -->
-                    <!-- <div class="dashboard-placeholder">
-                        <i class="fas fa-chart-line"></i>
-                        <h3>Power BI Dashboard</h3>
-                        <p>Replace 'YOUR-POWER-BI-EMBED-URL' with your actual Power BI embed URL</p>
-                    </div> -->
+                        /* clip-path: rect(0px 83.5% 82.6% 0%);
+                        border: none; 
+                        margin: 4%;
+                        margin-top: 20px;
+                        padding: 0;
+                        width: 100%;
+                        height: 100%;
+                        display: block; */
+                        " allowfullscreen></iframe>
                 </div>
 
                 <!-- PDF Fallback Section for Non-Login Users -->
@@ -702,16 +1111,6 @@
                         <iframe 
                             title="African Migration Dashboard PDF Preview" 
                             src="Dashboard.pdf"
-                            style="
-                                border: none; 
-                                margin: 0; 
-                                padding: 0;
-                                width: 100%;
-                                height: 600px;
-                                display: block;
-                                border-radius: 10px;
-                                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-                            "
                             allowfullscreen>
                         </iframe>
                     </div>
@@ -720,7 +1119,6 @@
                         <p><i class="fas fa-info-circle"></i> This is a static preview of the dashboard. For full interactivity, please access the live dashboard above.</p>
                     </div>
                 </div>
-                
             </div>
         </section>
 
@@ -733,65 +1131,89 @@
                     <div class="feature-card">
                         <div class="feature-icon"><i class="fas fa-map-marked-alt"></i></div>
                         <div class="feature-title">Geographic Mapping</div>
-                        <div class="feature-desc">Interactive choropleth maps showing displacement hotspots and
-                            migration corridors across African regions</div>
+                        <div class="feature-desc">Interactive choropleth maps showing displacement hotspots and migration corridors across African regions</div>
                     </div>
 
                     <div class="feature-card">
                         <div class="feature-icon"><i class="fas fa-clock"></i></div>
                         <div class="feature-title">Temporal Analysis</div>
-                        <div class="feature-desc">Time series visualization tracking displacement trends from 1950 to
-                            2026 with decade-by-decade breakdowns</div>
+                        <div class="feature-desc">Time series visualization tracking displacement trends from 1950 to 2026 with decade-by-decade breakdowns</div>
                     </div>
 
                     <div class="feature-card">
                         <div class="feature-icon"><i class="fas fa-users"></i></div>
                         <div class="feature-title">Demographic Insights</div>
-                        <div class="feature-desc">Gender and age breakdowns highlighting the impact on vulnerable
-                            populations including children and elderly</div>
+                        <div class="feature-desc">Gender and age breakdowns highlighting the impact on vulnerable populations including children and elderly</div>
                     </div>
 
                     <div class="feature-card">
                         <div class="feature-icon"><i class="fas fa-exclamation-triangle"></i></div>
                         <div class="feature-title">Conflict Analysis</div>
-                        <div class="feature-desc">Categorization of displacement drivers including conflict, climate
-                            change, economic factors, and policy changes</div>
+                        <div class="feature-desc">Categorization of displacement drivers including conflict, climate change, economic factors, and policy changes</div>
                     </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 3rem;">
+                    <a href="#dashboard" class="cta-button">Explore Interactive Dashboard</a>
                 </div>
             </div>
         </section>
     </div>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer" id="contact">
         <div class="container">
-            <p>&copy; 2025 African Migration Analysis Project. Built with Power BI and comprehensive humanitarian data.
-            </p>
+            <p>&copy; 2025 African Migration Analysis Project. Built with Power BI and comprehensive humanitarian data.</p>
             <p>Data sourced from UNHCR, IOM, World Bank, ReliefWeb, and academic research institutions.</p>
 
             <div class="social-links">
                 <a href="https://www.linkedin.com/in/shivkumar-devane-mar2005/"><i class="fab fa-linkedin"></i></a>
                 <a href="https://github.com/Amazing-coder1203/"><i class="fab fa-github"></i></a>
-                <!-- <a href="#"><i class="fab fa-twitter"></i></a> -->
                 <a href="mailto:shivkumardevane47@gmail.com"><i class="fas fa-envelope"></i></a>
             </div>
         </div>
     </footer>
 
     <script>
-        // Create animated particles
+        // Mobile menu toggle
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('mobile-active');
+            const icon = mobileMenuToggle.querySelector('i');
+            if (navLinks.classList.contains('mobile-active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Close mobile menu when clicking on links
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('mobile-active');
+                const icon = mobileMenuToggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+        });
+
+        // Create clean minimal particles
         function createParticles() {
             const particlesContainer = document.getElementById('particles');
-            const particleCount = 50;
+            const particleCount = window.innerWidth < 768 ? 15 : 30;
 
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
                 particle.style.left = Math.random() * 100 + '%';
                 particle.style.top = Math.random() * 100 + '%';
-                particle.style.width = particle.style.height = Math.random() * 4 + 2 + 'px';
-                particle.style.animationDelay = Math.random() * 6 + 's';
-                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                particle.style.width = particle.style.height = Math.random() * 3 + 1 + 'px';
+                particle.style.animationDelay = Math.random() * 8 + 's';
+                particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
                 particlesContainer.appendChild(particle);
             }
         }
@@ -810,6 +1232,31 @@
             });
         }
 
+        // Counter animation for statistics
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stat-number');
+            
+            counters.forEach(counter => {
+                const target = parseInt(counter.innerText.replace(/[^\d]/g, ''));
+                const increment = target / 100;
+                let current = 0;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        counter.innerText = counter.innerText;
+                        clearInterval(timer);
+                    } else {
+                        if (counter.innerText.includes('M')) {
+                            counter.innerText = Math.floor(current) + 'M';
+                        } else {
+                            counter.innerText = Math.floor(current);
+                        }
+                    }
+                }, 50);
+            });
+        }
+
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -824,13 +1271,44 @@
             });
         });
 
+        // Optimize for mobile touch
+        if ('ontouchstart' in window) {
+            document.body.classList.add('touch-device');
+        }
+
         // Initialize
         window.addEventListener('load', () => {
             createParticles();
             handleScrollAnimations();
+            setTimeout(animateCounters, 1000);
         });
 
         window.addEventListener('scroll', handleScrollAnimations);
+
+        // Handle orientation change
+        window.addEventListener('orientationchange', () => {
+            setTimeout(() => {
+                window.location.reload();
+            }, 500);
+        });
+
+        // Lazy loading for better mobile performance
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.classList.remove('lazy');
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+
+            document.querySelectorAll('img[data-src]').forEach(img => {
+                imageObserver.observe(img);
+            });
+        }
     </script>
 </body>
 
